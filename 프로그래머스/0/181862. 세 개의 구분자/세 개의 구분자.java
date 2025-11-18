@@ -2,7 +2,7 @@ import java.util.*;
 
 class Solution {
     public String[] solution(String myStr) {
-        String[] parts = myStr.split("[abc]");
+        String[] parts = myStr.split("[abc]+");
         
         String[] answer = Arrays.stream(parts)
             .filter(s -> !s.isEmpty())
