@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Solution {
     public int[] solution(int[] arr) {
         int len = arr.length;
@@ -7,9 +9,6 @@ class Solution {
             target *= 2;
         }
         
-        int answer[] = new int[target];
-        System.arraycopy(arr, 0, answer, 0, len);
-        
-        return answer;
+        return Arrays.copyOf(arr, target);
     }
 }
