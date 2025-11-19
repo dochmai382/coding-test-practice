@@ -3,10 +3,10 @@ import java.util.*;
 class Solution {
     public int[] solution(int[] arr) {
         int i = 0;
-        Stack<Integer> stk = new Stack<>();
+        Deque<Integer> stk = new ArrayDeque<>();
         
         while (i < arr.length) {
-            if (stk.empty()) {
+            if (stk.isEmpty()) {
                 stk.push(arr[i]);
             } else {
                 if (stk.peek() == arr[i]) stk.pop();
@@ -14,8 +14,11 @@ class Solution {
             }
             i++;
         }
-        if (stk.empty()) return new int[]{-1};
+        if (stk.isEmpty()) return new int[]{-1};
         
-        return stk.stream().mapToInt(e -> e).toArray();
+        List<Integer> list = new ArrayList<>(stk);
+        Collections.reverse(list);
+        
+        return list.stream().mapToInt(e -> e).toArray();
     }
 }
