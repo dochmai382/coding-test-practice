@@ -1,17 +1,18 @@
 class Solution {
-    public String solution(String my_string, int[][] queries) {        
-        StringBuilder sb = new StringBuilder(my_string);
+    public String solution(String my_string, int[][] queries) {
+        char[] arr = my_string.toCharArray();
         
-        for (int i = 0; i < queries.length; i++) {
-            int s = queries[i][0];
-            int e = queries[i][1];
+        for (int[] query : queries) {
+            int s = query[0];
+            int e = query[1];
             
-            String sub = sb.substring(s, e + 1);
-            StringBuilder reverseSb = new StringBuilder(sub).reverse();
-            
-            sb.replace(s, e + 1, reverseSb.toString());    
+            while (s < e) {
+                char temp = arr[s];
+                arr[s++] = arr[e];
+                arr[e--] = temp;
+            }
         }
         
-        return sb.toString();
+        return new String(arr);
     }
 }
