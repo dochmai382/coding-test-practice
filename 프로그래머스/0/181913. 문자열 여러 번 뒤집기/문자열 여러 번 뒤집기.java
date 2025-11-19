@@ -9,8 +9,7 @@ class Solution {
             String sub = sb.substring(s, e + 1);
             StringBuilder reverseSb = new StringBuilder(sub).reverse();
             
-            sb.delete(s, e + 1);
-            sb.insert(s, reverseSb.toString());    
+            sb.replace(s, e + 1, reverseSb.toString());    
         }
         
         return sb.toString();
