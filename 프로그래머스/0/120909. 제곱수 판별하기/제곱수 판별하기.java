@@ -1,8 +1,5 @@
 class Solution {
     public int solution(int n) {
-        for (int i = 0; i * i <= n; i++) {
-            if (i * i == n) return 1;
-        }
-        return 2;
+        return n % Math.sqrt(n) == 0 ? 1 : 2;
     }
 }
