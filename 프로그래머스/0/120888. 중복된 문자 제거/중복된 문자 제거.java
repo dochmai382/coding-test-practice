@@ -3,14 +3,12 @@ import java.util.*;
 class Solution {
     public String solution(String my_string) {
         StringBuilder sb = new StringBuilder();
-        Set<Character> set = new LinkedHashSet<>();
         
-        for (char ch : my_string.toCharArray()) {
-            set.add(ch);
-        }
+        String[] str = my_string.split("");
+        Set<String> set = new LinkedHashSet<>(Arrays.asList(str));
         
-        for (char ch : set) {
-            sb.append(ch);
+        for (String s : set) {
+            sb.append(s);
         }
         
         return sb.toString();
