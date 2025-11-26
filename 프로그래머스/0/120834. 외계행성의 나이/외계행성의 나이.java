@@ -1,16 +1,13 @@
-
-// a = 0, b = 1, ...j = 9
 class Solution {
     public String solution(int age) {
-        StringBuilder sb = new StringBuilder();
+        String answer = "";
+        String[] alphabets = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
         
-        char[] charAge = String.valueOf(age).toCharArray();
-        for (char ch: charAge) {
-            int num = ch - '0';
-            char alphabet = (char) ('a' + num);
-            sb.append(alphabet);     
+        while (age > 0) {
+            answer = alphabets[age % 10] + answer;
+            age /= 10;
         }
         
-        return sb.toString();
+        return answer;
     }
 }
