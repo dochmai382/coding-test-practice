@@ -27,9 +27,8 @@ class Solution {
             }
             
             Collections.sort(list, (item1, item2) -> {
-                if (item1.rate > item2.rate) return -1;
-                else if (item1.rate < item2.rate) return 1;
-                else return Integer.compare(item1.cost, item2.cost);
+                int comp = Double.compare(item2.rate, item1.rate);
+                return comp != 0 ? comp : Integer.compare(item1.cost, item2.cost);
             });
             
             sb.append(list.get(0).cost).append("\n");
