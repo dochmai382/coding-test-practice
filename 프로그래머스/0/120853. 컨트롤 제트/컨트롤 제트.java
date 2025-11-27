@@ -1,20 +1,18 @@
+import java.util.*;
+
 class Solution {
     public int solution(String s) {
         String[] strArr = s.split(" ");
         
-        int answer = Integer.parseInt(strArr[0]);
-        int idx = 1;
-        
-        while (idx < strArr.length) {
-            if (strArr[idx].equals("Z")) {
-                answer -= Integer.parseInt(strArr[idx - 1]);
-            } else {
-                answer += Integer.parseInt(strArr[idx]);
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (String str : strArr) {
+            if (str.equals("Z")) {
+                stack.removeFirst();
+            } else { 
+                stack.addFirst(Integer.parseInt(str));
             }
-            
-            idx++;
         }
         
-        return answer;
+        return stack.stream().mapToInt(i -> i).sum();
     }
 }
