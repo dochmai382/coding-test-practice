@@ -1,14 +1,22 @@
+import java.util.*;
+
 class Solution {
     public int[] solution(int[] emergency) {
-        int[] answer = new int[emergency.length];
+        int size = emergency.length;
+        int[] answer = new int[size];
         
-        for (int i = 0; i < emergency.length; i++) {
-            int rank = 1;
-            for (int j = 0; j < emergency.length; j++) {
-                if (emergency[j] > emergency[i]) rank++;
-            }
-            answer[i] = rank;
+        int[] sorted = emergency.clone();
+        Arrays.sort(sorted);
+        
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < sorted.length; i++) {
+            map.put(sorted[i], size - i);
         }
+        
+        for (int i = 0; i < size; i++) {
+            answer[i] = map.get(emergency[i]);
+        }
+        
         return answer;
     }
 }
