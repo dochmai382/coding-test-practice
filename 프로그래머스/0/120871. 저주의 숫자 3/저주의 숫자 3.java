@@ -1,21 +1,13 @@
 class Solution {
     public int solution(int n) {
         int answer = 0;
-        int count = 0;
         
-        while (count < n) {
+        for (int i = 1; i <= n; i++) {
             answer++;
             
-            do {
-                boolean isDivisible = (answer % 3 == 0);
-                boolean containsThree = String.valueOf(answer).contains("3");
-                
-                if (isDivisible || containsThree) answer++;
-                else break;
-                
-            } while(true);
+            if (answer % 3 == 0 || String.valueOf(answer).contains("3")) 
+                i--;
             
-            count++;
         }
         return answer;
     }
