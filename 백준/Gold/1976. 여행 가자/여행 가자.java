@@ -3,23 +3,23 @@ import java.util.*;
 
 class Solution {
     private int N, M;
-    private List<Integer>[] adj;
+    private int[] parent;
     private int[] plan;
     
     public void input(BufferedReader br) throws IOException {
         N = Integer.parseInt(br.readLine());
         M = Integer.parseInt(br.readLine());
         
-        adj = new ArrayList[N + 1];
+        parent = new int[N + 1];
         for (int i = 1; i <= N; i++) {
-            adj[i] = new ArrayList<>();
+            parent[i] = i;
         }
         
         for (int i = 1; i <= N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             for (int j = 1; j <= N; j++) {
                 int isConnected = Integer.parseInt(st.nextToken()); 
-                if (isConnected == 1) adj[i].add(j);
+                if (isConnected == 1 && i < j) union(i, j);
             }
         }
         
@@ -30,45 +30,30 @@ class Solution {
         }
     }
     
+    private void union(int a, int b) {
+        a = find(a);
+        b = find(b);
+        
+        if (a != b) parent[a] = b;
+    }
+    
+    private int find(int x) {
+        if (parent[x] == x) return x;
+        return parent[x] = find(parent[x]);
+    }
+    
     public String solve() {
         boolean can = true;
+        int root = find(plan[0]);
         
-        for (int i = 0; i < M - 1; i++) {
-            int startCity = plan[i];
-            int endCity = plan[i + 1];
-            
-            if (!bfs(startCity, endCity)) {
+        for (int i = 1; i < M; i++) {
+            if (find(plan[i]) != root) {
                 can = false;
                 break;
             }
         }
         
         return can ? "YES" : "NO";
-    }
-    
-    private boolean bfs(int start, int end) {
-        if (start == end) return true;
-        
-        Deque<Integer> queue = new ArrayDeque<>();
-        boolean[] visited = new boolean[N + 1];
-        
-        queue.offer(start);
-        visited[start] = true;
-        
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
-            
-            for (int next : adj[current]) {
-                if (next == end) return true;
-                
-                if (!visited[next]) {
-                    visited[next] = true;
-                    queue.offer(next);
-                }
-            }
-        }
-        
-        return false;
     }
 }
 
