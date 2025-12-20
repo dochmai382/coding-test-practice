@@ -4,13 +4,14 @@ class Solution {
     private int n, m;
     private int[] result;
     private boolean[][] visited;
-            
-    private static int[] dr = {-1, 1, 0, 0};
-    private static int[] dc = {0, 0, -1, 1};
+    
+    private final int[] dr = {-1, 1, 0, 0};
+    private final int[] dc = {0, 0, -1, 1};
     
     public int solution(int[][] land) {
         n = land.length;
         m = land[0].length;
+        
         result = new int[m];
         visited = new boolean[n][m];
         
@@ -24,21 +25,19 @@ class Solution {
         
         int answer = 0;
         for (int col : result) {
-            answer = Math.max(col, answer);
+            answer = Math.max(answer, col);
         }
-        
         return answer;
     }
     
     private void bfs(int r, int c, int[][] land) {
-        Queue<int[]> queue = new ArrayDeque<>();
+        Deque<int[]> queue = new ArrayDeque<>();
         queue.offer(new int[]{r, c});
         visited[r][c] = true;
-
-        
-        Set<Integer> cols = new HashSet<>();
         
         int count = 0;
+        Set<Integer> cols = new HashSet<>();
+        
         while (!queue.isEmpty()) {
             int[] curr = queue.poll();
             count++;
@@ -60,6 +59,5 @@ class Solution {
         for (int col : cols) {
             result[col] += count;
         }
-        
     }
 }
