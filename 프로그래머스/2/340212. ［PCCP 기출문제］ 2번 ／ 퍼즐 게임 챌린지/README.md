@@ -1,10 +1,10 @@
 # [level 2] [PCCP 기출문제] 2번 / 퍼즐 게임 챌린지 - 340212 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/340212) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/340212#qna) 
 
 ### 성능 요약
 
-메모리: 120 MB, 시간: 35.75 ms
+메모리: 127 MB, 시간: 32.99 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 10월 31일 16:30:04
+2025년 12월 20일 19:58:59
 
 ### 문제 설명
 
