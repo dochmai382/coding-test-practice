@@ -36,12 +36,10 @@ public class Main {
 	
 	static void bfs() {
 		Deque<int[]> q = new ArrayDeque<>();
-	
-		int[][] contact = new int[N][M];
-		boolean[][] visited = new boolean[N][M];
+		int[][] visited = new int[N][M];
 		
 		q.offer(new int[]{0, 0});
-		visited[0][0] = true;
+		visited[0][0] = 1;
 		
 		while (!q.isEmpty()) {
 			int[] cur = q.poll();
@@ -53,9 +51,9 @@ public class Main {
 				if (nx < 0 || ny < 0 || nx >= N || ny >= M) continue;
 				
 				if (map[nx][ny] == 1) {
-					contact[nx][ny]++;
-				} else if (!visited[nx][ny] && map[nx][ny] == 0) {
-					visited[nx][ny] = true;
+					visited[nx][ny]++;
+				} else if (visited[nx][ny] == 0 && map[nx][ny] == 0) {
+					visited[nx][ny] = 1;
 					q.offer(new int[]{nx, ny});
 				}
 			}
@@ -63,7 +61,7 @@ public class Main {
 		
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
-				if (contact[i][j] >= 2) {
+				if (map[i][j] == 1 && visited[i][j] >= 2) {
 					map[i][j] = 0;
 					cheese--;
 				}
