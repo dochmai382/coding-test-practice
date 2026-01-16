@@ -10,9 +10,10 @@ class Main {
             int N = Integer.parseInt(br.readLine());
 
             int[] cake = new int[L+1];
+            int[] realCount = new int[N+1];
             
             int expect = 0;
-            int expectCnt = Integer.MIN_VALUE;
+            int expectCnt = -1;
             for (int i = 1; i <= N; i++) {
                 StringTokenizer st = new StringTokenizer(br.readLine());
                 int P = Integer.parseInt(st.nextToken());
@@ -25,19 +26,18 @@ class Main {
                 }
 
                 for (int j = P; j <= K; j++) {
-                    if (cake[j] == 0) cake[j] = i;
+                    if (cake[j] == 0) {
+                        cake[j] = i;
+                        realCount[i]++;
+                    }
                 }
             }
 
             int fact = 0;
-            int result = Integer.MIN_VALUE;
+            int maxFact = -1;
             for (int i = 1; i <= N; i++) {
-                int cnt = 0;
-                for (int j = 1; j <= L; j++) {
-                    if (cake[j] == i) cnt++;
-                }
-                if (cnt > result) {
-                    result = cnt;
+                if (realCount[i] > maxFact) {
+                    maxFact = realCount[i];
                     fact = i;
                 }
             }
