@@ -2,7 +2,11 @@ import java.util.*;
 import java.io.*;
 
 class Main {
+    static long[][] dp = new long[31][31];
+    
     public static void main(String[] args) throws IOException {
+        makePascal();
+        
         try (
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         ) {
@@ -12,24 +16,17 @@ class Main {
                 int N = Integer.parseInt(st.nextToken());
                 int M = Integer.parseInt(st.nextToken());
 
-                System.out.println(solve(M, N));
+                System.out.println(dp[M][N]);
             }
         }
     }
 
-    private static long solve(int n, int r) {
-        if (r < 0 || r > n) return 0;
-        if (r > n/2) r = n - r;
-
-        long[][] dp = new long[n+1][r+1];
-
-        for (int i = 0; i <= n; i++) {
-            for (int j = 0; j <= Math.min(i, r); j++) {
+    private static void makePascal() {
+        for (int i = 0; i <= 30; i++) {
+            for (int j = 0; j <= i; j++) {
                 if (j == 0 || j == i) dp[i][j] = 1;
                 else dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
             }
         }
-
-        return dp[n][r];
     }
 }
