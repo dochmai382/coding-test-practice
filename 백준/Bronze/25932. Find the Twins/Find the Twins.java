@@ -8,25 +8,24 @@ class Main {
 
         StringBuilder sb = new StringBuilder();
         while (n-- > 0) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            List<Integer> list = new ArrayList<>();
-            for (int i = 0; i < 10; i++) {
-                list.add(Integer.parseInt(st.nextToken()));
-            }
-
-            for (int i : list) {
-                sb.append(i).append(" ");
-            }
-            sb.append("\n");
+            String line = br.readLine();
+            sb.append(line).append("\n");
             
-            boolean has17 = list.contains(17);
-            boolean has18 = list.contains(18);
-
+            StringTokenizer st = new StringTokenizer(line);
+            
+            boolean has17 = false;
+            boolean has18 = false;
+            
+            for (int i = 0; i < 10; i++) {
+                int num = Integer.parseInt(st.nextToken());
+                if (num == 17) has17 = true;
+                if (num == 18) has18 = true;
+            }
+            
             if (has17 && has18) sb.append("both\n\n");
             else if(has17) sb.append("zack\n\n");
             else if(has18) sb.append("mack\n\n");
             else sb.append("none\n\n");
-
         }
 
         System.out.print(sb);
