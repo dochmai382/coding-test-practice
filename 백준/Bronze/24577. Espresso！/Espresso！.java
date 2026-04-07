@@ -14,9 +14,8 @@ class Main {
         while (n-- > 0) {
             String input = br.readLine();
             
-            int need = 0;
-            if (input.contains("L")) need = input.charAt(0) - '0' + 1;
-            else need = Integer.parseInt(input);
+            int need = input.charAt(0) - '0';
+            if (input.contains("L")) need++;
 
             if (currentWater < need) {
                 refills++;
